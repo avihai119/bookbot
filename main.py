@@ -5,23 +5,24 @@ def get_book_text(path_to_file):
         file_contents = f.read()
     return file_contents
 
-
-
-def main():
-    path = "books/frankenstein.txt"
-    file_contents = get_book_text(path)
-    word_count = get_num_of_words(file_contents) 
-    char_dict = get_nums_of_chars(file_contents)
-    char_dict_list = sort_dict(char_dict)
-
+def print_report(book_path, word_count, sorted_dict_list):
     print("============ BOOKBOT ============")
-    print(f"Analyzing book found at {path}")
+    print(f"Analyzing book found at {book_path}...")
     print("----------- Word Count ----------")
     print(f"Found {word_count} total words")
     print("--------- Character Count -------")
-    for ch, count in char_dict_list:
+    for ch, count in sorted_dict_list:
             if str(ch).isalpha():
                 print(f"{ch}: {count}")
     print("============= END ===============")
+
+
+def main():
+    book_path = "books/frankenstein.txt"
+    file_contents = get_book_text(book_path)
+    word_count = get_num_of_words(file_contents) 
+    char_dict = get_nums_of_chars(file_contents)
+    sorted_dict_list = sort_dict(char_dict)
+    print_report(book_path, word_count, sorted_dict_list)
 
 main()
